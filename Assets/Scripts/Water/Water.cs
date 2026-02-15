@@ -31,6 +31,25 @@ public class Water : MonoBehaviour {
         mesh.RecalculateNormals();
     }
 
+    public float GetHeight(Vector3 worldPosition) {
+        if (displacedVertices == null || displacedVertices.Length == 0) {
+            return transform.position.y;
+        }
+        Vector3 localPosition = transform.InverseTransformPoint(worldPosition);
+        float closestDistance = float.MaxValue;
+        float height = 0f;
+        for (int i = 0; i < displacedVertices.Length; i++) {
+            Vector2 vertex = new Vector2(displacedVertices[i].x, displacedVertices[i].z);
+            Vector2 point = new Vector2(localPosition.x, localPosition.z);
+            float distance = Vector2.SqrMagnitude(vertex - point);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                height = displacedVertices[i].y;
+            }
+        }
+        return transform.TransformPoint(new Vector3(0, height, 0)).y;
+    }
+
     [Serializable]
     public struct Octave {
         public Vector2 speed;
