@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class Water : MonoBehaviour {
+public class Waves : MonoBehaviour {
     private Mesh mesh;
     private Vector3[] baseVertices;
     private Vector3[] displacedVertices;
