@@ -1103,7 +1103,7 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""WAD"",
                     ""id"": ""2935e988-771b-4b90-9c06-26f37eb3eb26"",
                     ""path"": ""Dpad"",
                     ""interactions"": """",

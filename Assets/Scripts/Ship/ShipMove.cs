@@ -3,35 +3,27 @@ using UnityEngine;
 public class ShipMove : MonoBehaviour {       
     public float speed = 12f;            
     public float turnSpeed = 45f;       
-    private string movementAxisName;     
-    private string turnAxisName;         
     private Rigidbody Rigidbody;         
-    private float movementInputValue;    
-    private float turnInputValue;        
+    private Vector2 moveInput;    
+    private InputSystemActions actions;       
 
     private void Awake() {
         Rigidbody = GetComponent<Rigidbody>();
+        actions = new InputSystemActions();
     }
 
     private void OnEnable () {
         Rigidbody.isKinematic = false;
-        movementInputValue = 0f;
-        turnInputValue = 0f;
+        actions.Ship.Enable();
     }
 
     private void OnDisable () {
         Rigidbody.isKinematic = true;
+        actions.Ship.Disable();
     }
-
-    private void Start() {
-        movementAxisName = "Vertical";
-        turnAxisName = "Horizontal";
-    }
-    
 
     private void Update() {
-        movementInputValue = Input.GetAxis(movementAxisName);
-        turnInputValue = Input.GetAxis(turnAxisName);
+        moveInput = actions.Ship.Move.ReadValue<Vector2>();
     }
 
     private void FixedUpdate() {
@@ -40,13 +32,14 @@ public class ShipMove : MonoBehaviour {
     }
 
     private void Move() {
-        Vector3 movement = transform.forward * movementInputValue * speed * Time.deltaTime;
+        float forward = Mathf.Max(0, moveInput.y);
+        Vector3 movement = transform.forward * forward * speed * Time.deltaTime;
         Rigidbody.MovePosition(Rigidbody.position + movement);
     }
 
 
     private void Turn() {
-        float turn = turnInputValue * turnSpeed * Time.deltaTime;
+        float turn = moveInput.x * turnSpeed * Time.fixedDeltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
         Rigidbody.MoveRotation(Rigidbody.rotation * turnRotation);
     }
