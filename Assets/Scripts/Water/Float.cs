@@ -50,7 +50,6 @@ public class Float : MonoBehaviour {
             }
             else {
                 gravity = affectDirection ? targetUp * -Physics.gravity.y : -Physics.gravity;
-                transform.Translate(Vector3.up * waterLineDelta * 0.9f);
             }
         }
         Rigidbody.AddForce(gravity * Mathf.Clamp(Mathf.Abs(waterLine - center.y), 0, 1));
