@@ -1634,6 +1634,27 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "587bfe16f85f47fead2c8ddf977f6c77",
+    "m_Id": 192546415,
+    "m_DisplayName": "Speed",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Speed",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 0.009999999776482582,
+        "y": 0.009999999776482582
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_Labels": []
+}
+
+{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
     "m_ObjectId": "5a0b91bb347243d5bc63f73d9ddc809c",
@@ -1839,27 +1860,6 @@
         "w": 0.0
     },
     "m_LiteralMode": false
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
-    "m_ObjectId": "738dbff7f80946f98cf0dd45776a72e6",
-    "m_Id": 192546415,
-    "m_DisplayName": "Speed",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Speed",
-    "m_StageCapability": 2,
-    "m_Value": {
-        "x": 0.009999999776482582,
-        "y": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "m_Labels": []
 }
 
 {
@@ -2415,27 +2415,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
-    "m_ObjectId": "a068dc5da9ac4b7f8c20237407a5c3f0",
-    "m_Id": 192546415,
-    "m_DisplayName": "Speed",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Speed",
-    "m_StageCapability": 2,
-    "m_Value": {
-        "x": 0.10000000149011612,
-        "y": 0.10000000149011612
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlendNode",
     "m_ObjectId": "a1ef8e3d86664cf6a9b1d5761029f7ed",
     "m_Group": {
@@ -2570,9 +2549,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1562.0001220703125,
-            "y": 315.0000305175781,
-            "width": 166.0,
+            "x": 1650.0,
+            "y": 318.0,
+            "width": 165.9998779296875,
             "height": 125.0
         }
     },
@@ -2605,6 +2584,27 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "abf2369bc85b45d5ae07b44645e74d94",
+    "m_Id": 192546415,
+    "m_DisplayName": "Speed",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Speed",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 0.009999999776482582,
+        "y": 0.009999999776482582
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_Labels": []
+}
+
+{
     "m_SGVersion": 2,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalLitSubTarget",
     "m_ObjectId": "abf8b83a30b644028fb7b62a95d74650",
@@ -2634,7 +2634,7 @@
     },
     "m_Slots": [
         {
-            "m_Id": "a068dc5da9ac4b7f8c20237407a5c3f0"
+            "m_Id": "587bfe16f85f47fead2c8ddf977f6c77"
         },
         {
             "m_Id": "9ee56460bd164949ba5357e10e7abae9"
@@ -3187,7 +3187,7 @@
     },
     "m_Slots": [
         {
-            "m_Id": "738dbff7f80946f98cf0dd45776a72e6"
+            "m_Id": "abf2369bc85b45d5ae07b44645e74d94"
         },
         {
             "m_Id": "9318a99efebe46e5834154d636f5dd80"

@@ -13,14 +13,14 @@ public class Waves : MonoBehaviour {
         displacedVertices = new Vector3[baseVertices.Length];
     }
 
-    void Update() {
+    void FixedUpdate() {
         for (int i = 0; i < baseVertices.Length; i++) {
             Vector3 vertex = baseVertices[i];
             float y = 0f;
             for (int o = 0; o < octaves.Length; o++) {
                 if (octaves[o].alternate) {
-                    float sampleX = vertex.x * octaves[o].scale.x + Time.time * octaves[o].speed.x;
-                    float sampleZ = vertex.z * octaves[o].scale.y + Time.time * octaves[o].speed.y;
+                    float sampleX = vertex.x * octaves[o].scale.x + Time.fixedTime * octaves[o].speed.x;
+                    float sampleZ = vertex.z * octaves[o].scale.y + Time.fixedTime * octaves[o].speed.y;
                     float perlin = Mathf.PerlinNoise(sampleX, sampleZ) * Mathf.PI * 2f;
                     y += Mathf.Cos(perlin) * octaves[o].height;
                 }

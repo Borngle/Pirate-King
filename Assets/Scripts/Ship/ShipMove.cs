@@ -1,8 +1,12 @@
 using UnityEngine;
 
 public class ShipMove : MonoBehaviour {       
-    public float speed = 12f;            
-    public float turnSpeed = 45f;       
+    public float moveAcceleration = 4f;
+    public float turnAcceleration = 15f;
+    public float maxMoveSpeed = 12f;            
+    public float maxTurnSpeed = 45f;  
+    private float currentMoveSpeed = 0f;
+    private float currentTurnSpeed = 0f;     
     private Rigidbody Rigidbody;         
     private Vector2 moveInput;    
     private InputSystemActions actions;       
@@ -33,13 +37,17 @@ public class ShipMove : MonoBehaviour {
 
     private void Move() {
         float forward = Mathf.Max(0, moveInput.y);
-        Vector3 movement = transform.forward * forward * speed * Time.deltaTime;
+        float targetSpeed = forward * maxMoveSpeed;
+        currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, targetSpeed, moveAcceleration * Time.fixedDeltaTime);
+        Vector3 movement = transform.forward * currentMoveSpeed * Time.fixedDeltaTime;
         Rigidbody.MovePosition(Rigidbody.position + movement);
     }
 
 
     private void Turn() {
-        float turn = moveInput.x * turnSpeed * Time.fixedDeltaTime;
+        float targetTurnSpeed = moveInput.x * maxTurnSpeed;
+        currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, targetTurnSpeed, turnAcceleration * Time.fixedDeltaTime);
+        float turn = currentTurnSpeed * Time.fixedDeltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
         Rigidbody.MoveRotation(Rigidbody.rotation * turnRotation);
     }

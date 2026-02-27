@@ -46,16 +46,16 @@ public class Float : MonoBehaviour {
         if (waterLine > center.y) {
             Rigidbody.linearDamping = waterDrag;
             if (attachToSurface) {
-                Rigidbody.position = new Vector3(Rigidbody.position.x, waterLine - centerOffset.y, Rigidbody.position.z);
+                Rigidbody.MovePosition(new Vector3(Rigidbody.position.x, waterLine - centerOffset.y, Rigidbody.position.z));
             }
-            else {
+            else { 
                 gravity = affectDirection ? targetUp * -Physics.gravity.y : -Physics.gravity;
             }
         }
         Rigidbody.AddForce(gravity * Mathf.Clamp(Mathf.Abs(waterLine - center.y), 0, 1));
         if (pointUnderWater) {
             targetUp = Vector3.SmoothDamp(transform.up, targetUp, ref smoothVectorRotation, 0.2f);
-            Rigidbody.rotation = Quaternion.FromToRotation(transform.up, targetUp) * Rigidbody.rotation;
+            Rigidbody.MoveRotation(Quaternion.FromToRotation(transform.up, targetUp) * Rigidbody.rotation);
         }
     }
 }
