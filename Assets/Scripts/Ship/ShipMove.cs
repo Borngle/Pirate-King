@@ -11,7 +11,7 @@ public class ShipMove : MonoBehaviour {
     private Rigidbody Rigidbody;         
     private Vector2 moveInput;    
     private InputSystemActions actions;
-    public ParticleSystem waterTrail;
+    //public ParticleSystem waterTrail;
     private AudioSource wind;
     public Transform rudder;
     public Transform wheel;
@@ -56,9 +56,10 @@ public class ShipMove : MonoBehaviour {
             wind.volume = Mathf.MoveTowards(wind.volume, 0.8f, 0.3f * Time.deltaTime);
         }
         else {
-            if (waterTrail.isPlaying) {
+            /*if (waterTrail.isPlaying) {
                 waterTrail.Stop();
             }
+            */
             wind.volume = Mathf.MoveTowards(wind.volume, 0f, 0.5f * Time.deltaTime);
             if(wind.volume <= 0.01f && wind.isPlaying) {
                 wind.Stop();
