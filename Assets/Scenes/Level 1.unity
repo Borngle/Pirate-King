@@ -156,11 +156,6 @@ RectTransform:
   m_AnchoredPosition: {x: 291.8, y: -134}
   m_SizeDelta: {x: 227.2, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &48681204 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5289287669931866830, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
-  m_PrefabInstance: {fileID: 5069637549387783029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &87301565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,23 +1179,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4768330898281341044, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
   m_PrefabInstance: {fileID: 5069637549387783029}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1396804602
+--- !u!114 &1396804602 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4020544756220986673, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
+  m_PrefabInstance: {fileID: 5069637549387783029}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48681204}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd27acc291c1c9f4f899ac47f8cb6e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipShoot
-  leftBallistas: []
-  leftArrows: []
-  rightBallistas: []
-  rightArrows: []
-  mainCamera: {fileID: 963194227}
 --- !u!1 &1774298826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1353,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4020544756220986673, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 4020544756220986673, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
+      propertyPath: arrows.angle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020544756220986673, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
+      propertyPath: ballistas.angle
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4768330898281341044, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.7
@@ -1408,13 +1409,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Red Sparrow
       objectReference: {fileID: 0}
+    - target: {fileID: 5992321948183935700, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
+      propertyPath: interval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992321948183935700, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
+      propertyPath: linePoints
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5289287669931866830, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1396804602}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff242b123f5887440ae17e1bf350fcc1, type: 3}
 --- !u!1001 &7337031546689201726
 PrefabInstance:

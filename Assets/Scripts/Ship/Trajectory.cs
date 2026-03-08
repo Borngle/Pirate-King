@@ -1,19 +1,26 @@
+using System;
 using UnityEngine;
 
 public class Trajectory : MonoBehaviour {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    public LineRenderer lineRenderer;
+    public int linePoints = 500;
+    public float interval = 0.5f;
+
+    public void Predict(Vector3 origin, float shootForce, Vector3 direction) {
+        lineRenderer.positionCount = linePoints;
+        Vector3 velocity = direction * shootForce;
+        for(int i = 0; i < linePoints; i++) {
+            float time = i * interval;
+            float x = origin.x + velocity.x * time;
+            // y = y + velocity * time + 1/2 * gravity * time^2;
+            float y = origin.y + velocity.y * time + 0.5f * Physics.gravity.y * time * time;
+            float z = origin.z + velocity.z * time;
+            lineRenderer.SetPosition(i, new Vector3(x, y, z));
+        }
+        lineRenderer.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Predict() {
-        
+    public void Hide() {
+        lineRenderer.enabled = false;
     }
 }

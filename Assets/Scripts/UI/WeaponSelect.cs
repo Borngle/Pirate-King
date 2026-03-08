@@ -47,8 +47,8 @@ public class WeaponSelect : MonoBehaviour {
     }
 
     void Cooldown() {
-        float ballistaPercent = 1f - (shipShoot.leftBallistas.timer / shipShoot.leftBallistas.cooldown);
-        float arrowPercent = 1f - (shipShoot.leftArrows.timer / shipShoot.leftArrows.cooldown);
+        float ballistaPercent = 1f - (shipShoot.ballistas.timer / shipShoot.ballistas.cooldown);
+        float arrowPercent = 1f - (shipShoot.arrows.timer / shipShoot.arrows.cooldown);
         ballistaImage.fillAmount = Mathf.Clamp01(ballistaPercent);
         arrowImage.fillAmount = Mathf.Clamp01(arrowPercent);
     }
