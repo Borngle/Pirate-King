@@ -9,6 +9,7 @@ public class ShipShoot : MonoBehaviour {
     private Trajectory trajectory;
     public Weapon ballistas;
     public Weapon arrows;
+    public ArcherAnimator archerAnimator;
 
     [Serializable]
     public class WeaponPositions {
@@ -29,12 +30,12 @@ public class ShipShoot : MonoBehaviour {
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        ballistas.shootForce = 100;
+        ballistas.shootForce = 150;
         arrows.shootForce = 50;
         ballistas.cooldown = 3f;
         arrows.cooldown = 1.5f;
         ballistas.angle = 0;
-        ballistas.maximumAngle = 10;
+        ballistas.maximumAngle = 3;
         arrows.angle = 0;
         arrows.maximumAngle = 15;
         usingBallistas = true;
@@ -61,9 +62,20 @@ public class ShipShoot : MonoBehaviour {
             active.angle = Mathf.Clamp(active.angle + 1f, -active.maximumAngle, active.maximumAngle);
         }
         if(Input.GetKey(KeyCode.LeftShift)) {
+            if(!usingBallistas) {
+                archerAnimator.SetArcherAnimation("Aim", true, facingLeft);
+            }
+            else {
+                archerAnimator.ClearArcherAnimation("Aim");
+            }
             Transform[] positions = GetWeaponPositions(active);
-            Debug.Log(positions.Length);
+            Vector3[] origins = new Vector3[positions.Length];
+            Vector3[] directions = new Vector3[positions.Length];
             for(int i = 0; i < positions.Length; i++) {
+                origins[i] = positions[i].position;
+                if(active.Equals(arrows)) {
+                    origins[i].y += 1.1f;
+                }
                 Vector3 direction = facingLeft ? -transform.right : transform.right;
                 float angle = facingLeft ? -active.angle : active.angle;
                 direction = Quaternion.AngleAxis(angle, Vector3.forward) * direction;
@@ -71,11 +83,13 @@ public class ShipShoot : MonoBehaviour {
                     direction.y += 0.15f;
                     direction.Normalize();
                 }
-                trajectory.Predict(positions[i].position, active.shootForce, direction);
+                directions[i] = direction;
             }
+            trajectory.Predict(origins, active.shootForce, directions);
         }
         else {
             trajectory.Hide();
+            archerAnimator.ClearArcherAnimation("Aim");
         }
     }
 
@@ -97,6 +111,10 @@ public class ShipShoot : MonoBehaviour {
         }
     }
 
+    void ResetShoot() {
+        archerAnimator.SetArcherAnimation("Shoot", false, facingLeft);
+    }
+
     void Shoot() {
         Weapon active = GetActiveWeapon();
         if(usingBallistas) {
@@ -114,11 +132,10 @@ public class ShipShoot : MonoBehaviour {
             else {
                 arrows.timer = arrows.cooldown;
             }
+            archerAnimator.SetArcherAnimation("Shoot", true, facingLeft);
+            Invoke("ResetShoot", 0.1f);
         }
         Transform[] positions = GetWeaponPositions(active);
-        for(int i = 0; i < positions.Length; i++) {
-            Vector3 direction = facingLeft ? -transform.right : transform.right;
-        }
     }
 }
 
