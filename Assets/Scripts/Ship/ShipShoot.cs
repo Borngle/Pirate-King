@@ -12,15 +12,10 @@ public class ShipShoot : MonoBehaviour {
     public ArcherAnimator archerAnimator;
 
     [Serializable]
-    public class WeaponPositions {
-        public Transform[] positions;
-        public GameObject projectile;
-    }
-
-    [Serializable]
     public class Weapon {
-        public WeaponPositions left;
-        public WeaponPositions right;
+        public GameObject projectile;
+        public Transform[] left;
+        public Transform[] right;
         public float shootForce;
         public float maximumAngle;
         public float angle;
@@ -95,10 +90,10 @@ public class ShipShoot : MonoBehaviour {
 
     Transform[] GetWeaponPositions(Weapon weapon) {
         if(facingLeft) {
-            return weapon.left.positions;
+            return weapon.left;
         }
         else {
-            return weapon.right.positions;
+            return weapon.right;
         }
     }
 
@@ -136,6 +131,27 @@ public class ShipShoot : MonoBehaviour {
             Invoke("ResetShoot", 0.1f);
         }
         Transform[] positions = GetWeaponPositions(active);
+        Vector3[] origins = new Vector3[positions.Length];
+        Vector3[] directions = new Vector3[positions.Length];
+        for(int i = 0; i < positions.Length; i++) {
+            origins[i] = positions[i].position;
+            if(active.Equals(arrows)) {
+                origins[i].y += 1.1f;
+            }
+            Vector3 direction = facingLeft ? -transform.right : transform.right;
+            float angle = facingLeft ? -active.angle : active.angle;
+            direction = Quaternion.AngleAxis(angle, Vector3.forward) * direction;
+            if(active.Equals(arrows)) {
+                direction.y += 0.15f;
+                direction.Normalize();
+            }
+            directions[i] = direction;
+        }
+        for(int i = 0; i < positions.Length; i++) {
+            GameObject projectile = Instantiate(active.projectile, positions[i].position, Quaternion.identity);
+            Quaternion initialRotation = Quaternion.LookRotation(directions[i]) * Quaternion.Euler(-90f, 0f, 180f);
+            projectile.GetComponent<Projectile>().Launch(directions[i], active.shootForce, initialRotation);
+        }
     }
 }
 
